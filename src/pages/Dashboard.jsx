@@ -5,7 +5,7 @@ const Dashboard = () => {
     return (
         <div className=' w-full flex flex-col-reverse md:flex-row  items-start justify-start'>
             {/* MEET RECORD */}
-            <div className='md:w-2/3 h-full  p-10 text-justify'>
+            <div className='w-[100dvw] md:w-2/3 h-full  p-10 text-justify'>
                 <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat repudiandae quasi facere doloremque molestias neque laboriosam sed alias reprehenderit impedit tenetur, quam et dolorem dolore quo eius dignissimos sint ab.
                     Voluptate natus numquam corporis sint culpa possimus voluptatem libero voluptatibus, debitis sapiente eius quod qui amet. Pariatur nulla eum quibusdam animi laudantium, consequatur culpa vitae doloribus laborum deserunt! Sapiente, voluptas.
                     Et necessitatibus soluta vitae expedita, esse voluptate ut quis vel, architecto nihil, fugit earum. Consequatur placeat sit suscipit quidem. Veniam doloremque enim rem soluta animi blanditiis vel voluptates adipisci ullam.
