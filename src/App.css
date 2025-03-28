@@ -1,0 +1,38 @@
+/* index.css */
+:root {
+    --bg-header: #ffffff;
+    --bg-main: #ededed;
+    --text-color: #2e2e2e;
+    --header-border: #cecece;
+    --bg-card: #ffffff;
+    --primary: #2e2e2e;
+    --button-color: #6c757d;
+    --button-text: #ffffff;
+
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --bg-header: #1a1a1a;
+    --bg-main: #1a1a1a;
+    --text-color: #ffffff;
+    --header-border: #343434;
+    --bg-card: #313131;
+    --primary: #cd80e5;
+    --button-color: #ad3ad1;
+    --button-text: #ffffff;
+
+
+}
+
+/* Apply the theme */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s;
+    font-family: poppins, sans-serif;
+}
+
+.bor {
+    border: 1px solid red;
+}

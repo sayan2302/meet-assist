@@ -1,11 +1,19 @@
+import { ToastContainer } from 'react-toastify';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Dashboard from './pages/Dashboard';
+import Protected from './components/Protected';
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={<Protected component={<Dashboard />} />} />
+        </Routes>
+        <ToastContainer />
+      </Router>
     </div>
   );
 }
