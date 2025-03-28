@@ -8,7 +8,6 @@ import { BiCollapseAlt } from "react-icons/bi";
 import { IoIosPeople, IoMdLogIn } from "react-icons/io";
 import { FaCalendarDay } from "react-icons/fa";
 import { GoClockFill } from "react-icons/go";
-import { IconButton } from '@mui/material';
 
 
 const Dashboard = () => {
