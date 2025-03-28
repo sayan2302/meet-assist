@@ -51,7 +51,7 @@ const Dashboard = () => {
             <div className={`w-[100dvw] md:w-2/3 overflow-x-hidden md:h-[calc(100dvh-60px)]  p-5 pt-0 text-justify`}
                 style={{ minHeight: `calc(100dvh - ${divHeight}px)` }}>
                 {/* TITLE | SEARCH | SORT */}
-                <div className='flex flex-col md:flex-row flex-wrap gap-y-3 items-end md:justify-between  max-w-full mb-5'>
+                <div className='flex flex-col md:flex-row flex-wrap gap-y-3 items-center md:items-end md:justify-between  max-w-full mb-5'>
                     <h1 className='text-xl font-[400] md:ml-5'>PRIOR MEETINGS</h1>
                     <div className='flex flex-wrap max-w-full items-center justify-end md:justify-between gap-2'>
                         <div className="flex ">
