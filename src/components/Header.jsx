@@ -3,7 +3,6 @@ import { PiWaveformFill } from 'react-icons/pi'
 import { motion } from 'framer-motion'
 import { Avatar, FormControlLabel, styled, Switch } from '@mui/material'
 import { useTheme } from '../contexts/themeContext';
-import { deepOrange } from '@mui/material/colors';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 64,
@@ -97,7 +96,7 @@ const Header = () => {
 
                 <div className='flex items-center'>
                     <FormControlLabel checked={darkMode} onChange={handleChange} control={<MaterialUISwitch defaultChecked />} />
-                    <Avatar sx={{ bgcolor: true ? deepOrange[400] : deepOrange[400], height: 36, width: 36, boxShadow: '0 0 0px 0px #f36f21', cursor: 'pointer' }}>
+                    <Avatar sx={{ bgcolor: "#ad3ad1", height: 36, width: 36, boxShadow: '0 0 0px 0px #f36f21', cursor: 'pointer' }}>
                         {"NAYAN".charAt(0)}
                     </Avatar>
                 </div>
