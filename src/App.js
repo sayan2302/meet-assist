@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<Protected component={<Dashboard />} />} />
+          {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
+          <Route path="/dashboardx" element={<Protected component={<Dashboard />} />} />
         </Routes>
         <ToastContainer />
       </Router>
