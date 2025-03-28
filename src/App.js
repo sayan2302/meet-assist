@@ -1,7 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Dashboard from './pages/Dashboard';
+import Dashboard from './Pages/Dashboard';
 import Protected from './components/Protected';
 
 function App() {

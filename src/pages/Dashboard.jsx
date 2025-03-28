@@ -21,10 +21,10 @@ const Dashboard = () => {
 
 
     return (
-        <div className=' w-full min-h-screen bor overflow-x-clip flex flex-col md:flex-row  items-start justify-start'>
+        <div className=' w-full min-h-screen overflow-x-clip flex flex-col md:flex-row  items-start justify-start'>
 
             {/* 🟡🟡🟡🟡 SECTION 2 🟡🟡🟡🟡 */}
-            <div className='pt-3  px-5 md:p-5 w-[100dvw] overflow-x-hidden  md:w-1/3 md:min-h-[calc(100dvh-60px)] border-l border-[var(--header-border)] md:fixed md:right-0  flex flex-col items-center justify-center'>
+            <div className='py-3  px-5 md:p-5 w-[100dvw] overflow-x-hidden  md:w-1/3 md:min-h-[calc(100dvh-60px)] borderx-l border-[var(--header-border)] md:fixed md:right-0  flex flex-col items-center justify-center'>
                 {/* ADD BOT CARD */}
                 <motion.div
                     ref={divRef}
@@ -41,24 +41,24 @@ const Dashboard = () => {
                         className='active:scale-95 mt-4 float-end text-[var(--button-text)] md:absolute rounded-md md:bottom-10 md:right-6 px-2 py-1 md:px-6 md:py-1 text-lg bg-[var(--button-color)]'>
                         Add
                     </button>}
-                    {!isExpanded && <BiExpandAlt onMouseDown={() => setIsExpanded(!isExpanded)} className='md:hidden absolute top-5 right-4' />}
-                    {isExpanded && <BiCollapseAlt onMouseDown={() => setIsExpanded(!isExpanded)} className='md:hidden absolute top-4 right-4' />}
+                    {!isExpanded && <BiExpandAlt onMouseDown={() => setIsExpanded(!isExpanded)} className='md:hidden absolute top-5 right-4 cursor-pointer' />}
+                    {isExpanded && <BiCollapseAlt onMouseDown={() => setIsExpanded(!isExpanded)} className='md:hidden absolute top-4 right-4 cursor-pointer' />}
                 </motion.div>
             </div>
 
 
             {/* 🟡🟡🟡🟡 SECTION 1 🟡🟡🟡🟡 */}
-            <div className={`w-[100dvw] md:w-2/3  overflow-x-hidden md:min-h-[calc(100dvh-60px)]  p-5 text-justify`}
-                style={{ minHeight: `calc(100vh - ${divHeight}px)` }}>
+            <div className={`w-[100dvw] md:w-2/3 overflow-x-hidden md:h-[calc(100dvh-60px)]  p-5 pt-0 text-justify`}
+                style={{ minHeight: `calc(100dvh - ${divHeight}px)` }}>
                 {/* TITLE | SEARCH | SORT */}
-                <div className='flex flex-col md:flex-row flex-wrap gap-y-3 items-center md:justify-between  w-full mb-5'>
-                    <h1>PRIOR MEETINGS</h1>
-                    <div className='flex items-center justify-between gap-2'>
-                        <div className="flex">
+                <div className='flex flex-col md:flex-row flex-wrap gap-y-3 items-end md:justify-between  max-w-full mb-5'>
+                    <h1 className='text-xl font-[400] md:ml-5'>PRIOR MEETINGS</h1>
+                    <div className='flex flex-wrap max-w-full items-center justify-end md:justify-between gap-2'>
+                        <div className="flex ">
                             <input
                                 type="text"
                                 placeholder="Search meetings..."
-                                className="md:w-[300px] px-4 py-[4px] text-white bg-transparent border border-[var(--header-border)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--header-border)]"
+                                className="max-w-[70dvw] md:w-[300px] px-4 py-[4px] text-white bg-transparent border border-[var(--header-border)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--header-border)]"
                             />
                             <button
                                 className='active:scale-95 -ml-3 text-[var(--button-text)]  rounded-md  px-3 py-2 text-lg bg-[var(--button-color)]'>
@@ -66,7 +66,7 @@ const Dashboard = () => {
                             </button>
                         </div>
                         <button
-                            className='active:scale-95 text-[var(--button-text)]  rounded-md  px-3 py-2 text-lg bg-[var(--button-color)]'>
+                            className=' active:scale-95 text-[var(--button-text)]  rounded-md  px-3 py-2 text-lg bg-[var(--button-color)]'>
                             <MdOutlineSort />
                         </button>
                     </div>
