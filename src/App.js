@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
+          <Route path="/demo" element={<Protected component={<Dashboard />} />} />
           <Route path="/dashboardx" element={<Protected component={<Dashboard />} />} />
         </Routes>
         <ToastContainer />
