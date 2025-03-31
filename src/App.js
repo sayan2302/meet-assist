@@ -1,6 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Dashboard from './page/Dashboard';
 import Protected from './components/Protected';
 
