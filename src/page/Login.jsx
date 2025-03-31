@@ -2,7 +2,7 @@ import { FormControlLabel, styled, Switch } from '@mui/material';
 import React, { useState } from 'react'
 import { PiWaveformFill } from 'react-icons/pi'
 import { useTheme } from '../contexts/themeContext';
-
+import { motion } from 'framer-motion'
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 64,
@@ -74,16 +74,29 @@ const Login = () => {
     const [isSignupActive, setIsSignupActive] = useState(true);
 
     return (
-        <div className='w-full min-h-[100dvh] overflow-hidden flex flex-col items-start md:flex-nowrap gap-x-2'>
+        <div className='w-full min-h-[100dvh] overflow-hidden flex flex-col md:flex-row  md:flex-nowrap gap-x-2'>
 
-            <div className=' mx-auto md:w-1/2 h-[20dvh] md:min-h-full justify-center flex flex-row md:flex-col items-center'>
+            <div className=' mx-auto md:w-1/2 h-[30dvh]  md:min-h-[100dvh]  flex flex-row md:flex-col items-center justify-center'>
 
                 <PiWaveformFill className='text-[75px] md:text-[200px] text-[var(--primary)]' />
-                <span className='text-2xl md:text-4xl text-[var(--primary)] '>Meet Assist</span>
+                <motion.span
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5 }}
+                    className='text-2xl md:text-4xl text-[var(--primary)] '>
+                    Meet Assist
+                </motion.span>
 
             </div>
 
-            <div className=' mx-auto md:w-1/2  min-h-full'>
+            <motion.div
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -100 }}
+                transition={{ duration: 0.5 }}
+
+                className=' mx-auto md:w-1/2  min-h-full'>
                 {isSignupActive ?
                     <div className='flex flex-col items-center justify-center h-full'>
                         <span className='text-4xl text-[var(--primary)] '>Login</span>
@@ -106,7 +119,7 @@ const Login = () => {
                         </div>
                     </div>
                 }
-            </div>
+            </motion.div>
 
             <FormControlLabel className='absolute -right-4 top-0' checked={darkMode} onChange={handleChange} control={<MaterialUISwitch defaultChecked />} />
 
