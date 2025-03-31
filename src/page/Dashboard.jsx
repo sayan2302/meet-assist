@@ -64,8 +64,11 @@ const Dashboard = () => {
                     className='w-full md:w-[440px] md:h-[400px] relative py-3 px-2 md:py-12 md:px-6 bg-[var(--bg-card)] shadow-md border border-[var(--bg-main)] rounded-2xl md:rounded-3xl  '>
 
                     <p className='text-2xl md:text-4xl font-[500] text-[var(--primary)] md:text-end'>Add bot to meeting</p>
-                    {isExpanded && <p className='border-4 mt-4'>Enter meeting URL</p>}
-                    {isExpanded && <p className='border-4 mt-6'>Upload File</p>}
+                    {isExpanded && <p className='border-1 mt-6 text-right underline text-xl'>Enter meeting URL</p>}
+                    {isExpanded && <button
+                        className='active:scale-95 mt-4 float-end text-[var(--text-color)]  rounded-md  px-2 py-1 md:px-6 md:py-1 text-lg border-2 border-[var(--button-color)]'>
+                        Upload File +
+                    </button>}
                     {isExpanded && <button
                         className='active:scale-95 mt-4 float-end text-[var(--button-text)] md:absolute rounded-md md:bottom-10 md:right-6 px-2 py-1 md:px-6 md:py-1 text-lg bg-[var(--button-color)]'>
                         Add
