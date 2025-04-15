@@ -1,0 +1,22 @@
+[
+    {
+        "speaker": "Hello, how are you?",
+        "message": "I am fine, thank you!"
+    },
+    {
+        "speaker": "What's the weather like today?",
+        "message": "It's sunny with a high of 75 degrees."
+    },
+    {
+        "speaker": "Did you finish the project?",
+        "message": "Almost done, just need to review the final section."
+    },
+    {
+        "speaker": "When is the meeting scheduled?",
+        "message": "It's at 2 PM in the conference room."
+    },
+    {
+        "speaker": "Can you help me with this code?",
+        "message": "Sure, what specific issue are you facing?"
+    }
+]

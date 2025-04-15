@@ -95,7 +95,7 @@ const Header = () => {
                 </div>
 
                 <div className='flex items-center'>
-                    <FormControlLabel checked={darkMode} onChange={handleChange} control={<MaterialUISwitch defaultChecked />} />
+                    <FormControlLabel checked={darkMode} onChange={handleChange} control={<MaterialUISwitch />} />
                     <Avatar sx={{ bgcolor: "#ad3ad1", height: 36, width: 36, boxShadow: '0 0 0px 0px #f36f21', cursor: 'pointer' }}>
                         {"NAYAN".charAt(0)}
                     </Avatar>

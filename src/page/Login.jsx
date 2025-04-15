@@ -121,7 +121,7 @@ const Login = () => {
                 }
             </motion.div>
 
-            <FormControlLabel className='absolute -right-4 top-0' checked={darkMode} onChange={handleChange} control={<MaterialUISwitch defaultChecked />} />
+            <FormControlLabel className='absolute -right-4 top-0' checked={darkMode} onChange={handleChange} control={<MaterialUISwitch />} />
 
 
         </div>

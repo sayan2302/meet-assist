@@ -8,6 +8,8 @@
     --primary: #2e2e2e;
     --button-color: #6c757d;
     --button-text: #ffffff;
+    --accordion-header-bg: #313131;
+    --accordion-header-text: #ffff;
 
 }
 
@@ -21,6 +23,8 @@
     --primary: #cd80e5;
     --button-color: #ad3ad1;
     --button-text: #ffffff;
+    --accordion-header-bg: #cd80e5;
+    --accordion-header-text: #2e2e2e;
 
 
 }
