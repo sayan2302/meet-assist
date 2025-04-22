@@ -11,6 +11,7 @@ import { FaCalendarDay } from 'react-icons/fa';
 import { IoIosPeople } from 'react-icons/io';
 import { GoClockFill } from 'react-icons/go';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -67,6 +68,10 @@ export default function TranscriptRecord() {
     const [isLoading, setIsLoading] = useState(false);
     const tdiv = useRef(null);
     const qdiv = useRef(null);
+
+    const location = useLocation();
+    const { meetingUrl, botName, fileDescription, botId } = location.state || {};
+
 
 
     const [expanded, setExpanded] = useState('panel1');
@@ -169,7 +174,7 @@ export default function TranscriptRecord() {
                     onClick={() => {
                         tdiv.current.scrollIntoView({ behavior: 'smooth' });
                     }
-                    }>All Hands Meeting</p>
+                    }>All Hands Meeting {botId}</p>
                 <div className="flex gap-x-4 justify-end mt-2 mb-4 px-2 w-full">
                     <p className='text-sm font-[400] text-[#757575] flex gap-x-1 items-baseline'><FaCalendarDay className='text-md' /> 2023-10-16</p>
                     <p className='text-sm font-[400] text-[#757575] flex gap-x-1 items-center'><GoClockFill className='text-md' />{convertMinutes("90")}</p>
@@ -393,7 +398,7 @@ export default function TranscriptRecord() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam et ducimus id quasi distinctio exercitationem aperiam facere doloribus, voluptate voluptates dolores eius. Earum saepe libero inventore mollitia nobis, nemo adipisci architecto aliquam perferendis maiores deleniti dolorum, quas consectetur iste porro numquam accusantium labore explicabo reiciendis, recusandae non consequatur iusto. Inventore unde officia sed ipsa amet dolor! Non esse officiis, omnis qui dolore distinctio at eligendi accusamus soluta! Facilis quia adipisci hic corrupti veritatis necessitatibus magnam quibusdam quam consectetur perspiciatis unde, dolor cupiditate dicta in voluptatibus! Sed, beatae tenetur? Unde odio odit ex recusandae nemo amet vitae. Quia minus adipisci nesciunt!
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam et ducimus id quasi distinctio exercitationem aperiam facere doloribus, voluptate voluptates dolores eius. Earum saepe libero inventore mollitia nobis, nemo adipisci architecto aliquam perferendis maiores deleniti dolorum, quas consectetur iste porro numquam accusantium labore explicabo reiciendis, recusandae non consequatur iusto. Inventore unde officia sed ipsa amet dolor! Non esse officiis, omnis qui dolore distinctio at eligendi accusamus soluta! Facilis quia adipisci hic corrupti veritatis necessitatibus magnam quibusdam quam consectetur perspiciatis unde, dolor cupiditate dicta in voluptatibus! Sed, beatae tenetur? Unde odio odit ex recusandae nemo amet vitae. Quia minus adipisci nesciunt!
                         </Typography>
                     </AccordionDetails>
                 </Accordion>

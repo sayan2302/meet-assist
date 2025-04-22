@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { MdOutlineSort } from "react-icons/md";
+import { MdDelete, MdOutlineSort } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { prevMeetings } from '../utils/data.js';
 import { BiExpandAlt } from "react-icons/bi";
@@ -8,13 +8,44 @@ import { BiCollapseAlt } from "react-icons/bi";
 import { IoIosPeople, IoMdLogIn } from "react-icons/io";
 import { FaCalendarDay } from "react-icons/fa";
 import { GoClockFill } from "react-icons/go";
+import { TextField } from '@mui/material';
+import { createMeeting } from '../services/transcript.js';
+import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const Dashboard = () => {
 
+    const location = useLocation(); // To avoid warning for unused useLocation
+    const navigate = useNavigate(); // To avoid warning for unused useNavigate
+
     const [isExpanded, setIsExpanded] = useState(window.innerWidth > 768);
     const [divHeight, setDivHeight] = useState(0); // State to store the height
     const divRef = useRef(null); // Ref to capture the div
+    const fileInputRef = useRef(null); // Ref for the file input
+
+    const [addLoader, setAddLoader] = useState(false); // State to store the uploaded file
+
+
+    const [uploadedFile, setUploadedFile] = useState(null); // State to store the uploaded file
+    const [botName, setBotName] = useState(''); // State to store the uploaded file
+    const [meetingUrl, setMeetingUrl] = useState(''); // State to store the uploaded file
+    const [fileDescription, setFileDescription] = useState(''); // State to store the uploaded file
+
+
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setUploadedFile(file);
+            console.log("Uploaded file:", file);
+        }
+    };
+
+    const handleUploadButtonClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click(); // Trigger the file input's click event
+        }
+    };
 
     function convertMinutes(minutes) {
         if (minutes < 60) {
@@ -28,6 +59,33 @@ const Dashboard = () => {
             return `${hours} hr${hours > 1 ? 's' : ''} ${remainingMinutes} min${remainingMinutes > 1 ? 's' : ''}`;
         }
     }
+
+    const handleCreateMeeting = async () => {
+        setAddLoader(true);
+        try {
+            const formData = new FormData();
+            formData.append('bot_name', botName);
+            formData.append('meeting_url', meetingUrl);
+            formData.append('file', uploadedFile);
+            formData.append('description', fileDescription);
+
+            const response = await createMeeting(formData);
+
+            if (response.status === 200) {
+                toast.success("Bot Initiated successfully");
+                navigate('/transcript-record', { state: { meetingUrl: meetingUrl, botName: botName, fileDescription: fileDescription, botId: response.data.botID } }); // Navigate to the transcript page
+                setAddLoader(false);
+            }
+            else {
+                toast.error("Error creating meeting:", response.data.message);
+                setAddLoader(false);
+            }
+        } catch (error) {
+            console.error("Error creating meeting");
+            setAddLoader(false);
+        }
+    }
+
 
 
 
@@ -61,18 +119,111 @@ const Dashboard = () => {
                     transition={{ duration: 1, type: "spring", stiffness: 100 }}
                     exit={{ opacity: 0, x: 100 }}
                     layout
-                    className='w-full md:w-[440px] md:h-[400px] relative py-3 px-2 md:py-12 md:px-6 bg-[var(--bg-card)] shadow-md border border-[var(--bg-main)] rounded-2xl md:rounded-3xl  '>
+                    className='flex flex-col  w-full md:w-[440px] md:h-[400px] relative py-3 px-2 md:py-8 gap-y-2 md:px-6 bg-[var(--bg-card)] shadow-md border border-[var(--bg-main)] rounded-2xl md:rounded-3xl  '>
 
-                    <p className='text-2xl md:text-4xl font-[500] text-[var(--primary)] md:text-end'>Add bot to meeting</p>
-                    {isExpanded && <p className='border-1 mt-6 text-right underline text-xl'>Enter meeting URL</p>}
-                    {isExpanded && <button
-                        className='active:scale-95 mt-4 float-end text-[var(--text-color)]  rounded-md  px-2 py-1 md:px-6 md:py-1 text-lg border-2 border-[var(--button-color)]'>
-                        Upload File +
-                    </button>}
-                    {isExpanded && <button
-                        className='active:scale-95 mt-4 float-end text-[var(--button-text)] md:absolute rounded-md md:bottom-10 md:right-6 px-2 py-1 md:px-6 md:py-1 text-lg bg-[var(--button-color)]'>
-                        Add
-                    </button>}
+                    <p className='text-2xl md:text-4xl font-[500] text-[var(--primary)] md:text-center'>Add bot to meeting</p>
+
+                    {isExpanded &&
+                        <TextField
+                            autoComplete="off"
+                            onChange={(e) => setBotName(e.target.value)}
+                            id="outlined-basic"
+                            className="text-white"
+                            label="Bot name"
+                            variant="standard"
+                            sx={{
+                                input: { color: 'var(--text-color)' }, // Text color
+                                '& .MuiInput-underline:before': { borderBottomColor: 'var(--text-color)' }, // Underline color when not focused
+                                '& .MuiInput-underline:hover:before': { borderBottomColor: 'var(--text-color)' }, // Underline color on hover
+                                '& .MuiInput-underline:after': { borderBottomColor: 'var(--text-color)' }, // Highlight color
+                                '& .MuiInputLabel-root': { color: 'var(--text-color)' }, // Label color
+                                '& .MuiInputLabel-root.Mui-focused': { color: 'var(--text-color)' }, // Label color when focused
+                            }}
+                        />
+                    }
+                    {isExpanded &&
+                        <TextField
+                            autoComplete="off"
+                            onChange={(e) => setMeetingUrl(e.target.value)}
+                            id="outlined-basic"
+                            className="text-white"
+                            label="Enter meeting URL"
+                            variant="standard"
+                            sx={{
+                                input: { color: 'var(--text-color)' }, // Text color
+                                '& .MuiInput-underline:before': { borderBottomColor: 'var(--text-color)' }, // Underline color when not focused
+                                '& .MuiInput-underline:hover:before': { borderBottomColor: 'var(--text-color)' }, // Underline color on hover
+                                '& .MuiInput-underline:after': { borderBottomColor: 'var(--text-color)' }, // Highlight color
+                                '& .MuiInputLabel-root': { color: 'var(--text-color)' }, // Label color
+                                '& .MuiInputLabel-root.Mui-focused': { color: 'var(--text-color)' }, // Label color when focused
+                            }}
+                        />
+                    }
+                    {isExpanded &&
+                        <TextField
+                            autoComplete="off"
+                            onChange={(e) => setFileDescription(e.target.value)}
+                            id="outlined-basic"
+                            className="text-white"
+                            label="Description of file"
+                            variant="standard"
+                            sx={{
+                                input: { color: 'var(--text-color)' }, // Text color
+                                '& .MuiInput-underline:before': { borderBottomColor: 'var(--text-color)' }, // Underline color when not focused
+                                '& .MuiInput-underline:hover:before': { borderBottomColor: 'var(--text-color)' }, // Underline color on hover
+                                '& .MuiInput-underline:after': { borderBottomColor: 'var(--text-color)' }, // Highlight color
+                                '& .MuiInputLabel-root': { color: 'var(--text-color)' }, // Label color
+                                '& .MuiInputLabel-root.Mui-focused': { color: 'var(--text-color)' }, // Label color when focused
+                            }}
+                        />
+                    }
+
+
+
+                    {isExpanded && !uploadedFile && (
+                        <>
+                            <input
+                                type="file"
+                                ref={fileInputRef} // Attach the ref to the input
+                                onChange={handleFileUpload}
+                                className="hidden" // Hide the file input
+                                accept=".txt,.pdf,.docx,.xlsx" // Optional: restrict file types
+                            />
+                            <button
+                                onClick={handleUploadButtonClick} // Trigger the file input's click event
+                                className='active:scale-95 mt-4 text-[var(--text-color)] rounded-md px-2 py-1 md:px-6 md:py-1 text-lg border-2 border-[var(--button-color)]'
+                            >
+                                Upload File +
+                            </button>
+                        </>
+                    )}
+
+                    {isExpanded && uploadedFile && (
+                        <div className='flex mt-4 items-center w-fit justify-end  group '>
+                            <span className='mr-2'>File uploaded: </span>
+                            <p className='text-sm text-[var(--button-text)] cursor-default bg-[var(--button-color)] rounded-[10px] w-fit px-2 py-[2px]'>{uploadedFile.name}</p>
+                            <MdDelete onClick={() => { setUploadedFile(null) }} className='ml-1 text-red-500 text-lg cursor-pointer' />
+                        </div>
+                    )}
+
+
+                    {isExpanded &&
+                        <>
+                            {addLoader ?
+                                <button
+                                    className=' animate-pulse cursor-wait  mt-4 float-end text-[var(--button-text)] md:absolute rounded-md md:bottom-10 md:right-6 px-2 py-1 md:px-6 md:py-1 text-lg bg-[var(--button-color)]'>
+                                    Adding...
+                                </button>
+                                :
+                                <button
+                                    onClick={handleCreateMeeting}
+                                    className='active:scale-95 cursor-pointer mt-4 float-end text-[var(--button-text)] md:absolute rounded-md md:bottom-10 md:right-6 px-2 py-1 md:px-6 md:py-1 text-lg bg-[var(--button-color)]'>
+                                    Add
+                                </button>
+
+                            }
+                        </>
+                    }
                     {!isExpanded && <BiExpandAlt onMouseDown={() => setIsExpanded(!isExpanded)} className='md:hidden absolute top-5 right-4 cursor-pointer' />}
                     {isExpanded && <BiCollapseAlt onMouseDown={() => setIsExpanded(!isExpanded)} className='md:hidden absolute top-4 right-4 cursor-pointer' />}
                 </motion.div>
