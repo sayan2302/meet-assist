@@ -81,7 +81,7 @@ export default function Socket() {
 
         console.log('Emitting value to backend:', value); // Debug log
 
-        socket.timeout(10000).emit('create-something', value, (err, response) => {
+        socket.timeout(10000).emit('invoke', value, (err, response) => {
             if (err) {
                 console.error('Error from backend:', err); // Handle error
             } else {

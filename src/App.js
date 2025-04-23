@@ -14,12 +14,12 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Protected component={<Dashboard />} />} />
           <Route path="/transcript-live" element={<Protected component={<TranscriptLive />} />} />
           <Route path="/transcript-record" element={<Protected component={<TranscriptRecord />} />} />
-          {/* <Route path="/" element={<Protected component={<Poc />} />} /> */}
+          <Route path="/" element={<Protected component={<Poc />} />} />
         </Routes>
         <ToastContainer />
       </Router>
